@@ -22,6 +22,7 @@ except  socket.error,  msg:
 
 output_file = open("total.bin","wb")
 counter=0
+myfile=b''
 # receive a packet
 while True:
     packet = s.recvfrom(65565)
@@ -57,7 +58,7 @@ while True:
         s_addr = socket.inet_ntoa(iph[8]);
         d_addr = socket.inet_ntoa(iph[9]);
 
-        if(str(s_addr) == '192.168.0.100' or str(s_addr) == '192.168.0.101' or str(s_addr)  == '192.168.0.102' ) :
+        if(str(s_addr) == '192.168.0.101'  and str(d_addr)  == '192.168.0.102' ) :
             #TCP protocol
             # if protocol == 6 :
             #     t = iph_length + eth_length
@@ -142,20 +143,26 @@ while True:
                 # RTP
                 else:
                     print "packet is RTP"
-                    print("header:"+ data[:12])
-                    print("payloaddata:" + data[12:])
+                    # print("header:"+ data[:12])
+                    # print("payloaddata:" + data[12:])
 
                     counter+=1
                     print counter
-                    if counter >=100:
+                    if counter >=1000:
+                        output_file.write(myfile)
                         output_file.close()
                         print 'file is closed'
                     else:
-                        print 'else is running..'
-                        output_file.write(data[:])
+                        myfile+=data[:]
+                        # print "*"*10
+                        # print type(data)
+                        # print type(myfile)
+                        # print "*"*10
+                        print 'file not closed'
                         # output_file.write(data[12:])
 
-                # print  'Size header: ' + str(h_size) + 'Data : ' + data + "udph:" + str(udph) + "u length: "  + str(u)
+                print  'Size header: ' + str(h_size) + 'Data : ' + data + "udph:" + str(udph) + "u length: "  + str(u) + "data_size:"+  str(data_size)
+
 
             #some other IP packet like IGMP
             # else :

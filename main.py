@@ -1,5 +1,7 @@
 # add the most.voip library root dir to the current python path...
 import sys
+import uuid
+
 sys.path.append("src/")
 from most.voip.api import VoipLib
 from most.voip.constants import VoipEvent
@@ -11,7 +13,7 @@ import time, sys
 if __name__ == '__main__':
 
     # choose a sip extension to call
-    extension = "steand"
+    extension = "100"
 
     # implement a method that will capture all the events triggered by the Voip Library
     def notify_events(voip_event_type,voip_event, params):
@@ -40,25 +42,25 @@ if __name__ == '__main__':
         else:
             print "Received unhandled event type:%s --> %s" % (voip_event_type,voip_event)
 
-    voip_params = {u'username': u'steand',
-                   u'sip_server_pwd': u'steand',
-                   u'sip_server_address': u'192.168.0.102' ,
-                   u'sip_server_user': u'steand',
-                   u'sip_server_transport' :u'udp',
+    voip_params = {u'username': u'100',
+                   u'sip_server_pwd': u'100',
+                   u'sip_server_address': u'127.0.0.1:6060',
+                   u'sip_server_user': u'100',
+                   u'sip_server_transport': u'udp',
                    # u'turn_server_address': u'192.168.1.79',
                    #u'turn_server_user': u'',
                    #u'turn_server_pwd': u'',
-                   u'log_level' : 1,
-                   u'debug' : True }
+                   u'log_level':1,
+                   u'debug':True }
 
 
 
     myVoip = VoipLib()
     print "Initializing the Voip Lib..."
     myVoip.init_lib(voip_params, notify_events)
-    print "Registering the account on the Sip Server..."
-    myVoip.register_account()
+    # print "Registering the account on the Sip Server..."
+    # myVoip.register_account()
 
     while True:
-        time.sleep(10)
+        time.sleep(1)
     # myVoip.hangup_call()

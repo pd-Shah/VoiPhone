@@ -319,10 +319,7 @@ class VoipBackend:
     class SipServer(IServer):
         def __init__(self, ip, state):
 
-            self.ip = '192.168.0.102'
-            print "****************************"
-            print self.ip
-            print "****************************"
+            self.ip = ip
             self.state = state
 
         def get_ip(self):
