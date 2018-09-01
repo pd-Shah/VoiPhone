@@ -92,5 +92,5 @@ class RtpPacket:
 
 
 
-obj= RtpPacket()
-obj.sendpack("192.168.0.101", 5004)
+# obj= RtpPacket()
+# obj.sendpack("192.168.0.101", 5004)

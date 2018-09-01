@@ -4,6 +4,8 @@ from threading import Thread
 from time import sleep
 from packetize import RtpPacket
 import os
+import re
+
 #
 # def client(message ,UDP_IP_ADDRESS, UDP_PORT_NO):
 #     clientSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -17,21 +19,33 @@ import os
 # 6-create a serial port communication which has ability to send and receive data async
 # 7-create a protocol to call, answer, hangup
 packetize = RtpPacket()
-palloadData = b'00000000000000000000'
+voiceData = b'00000000000000000000'
+lastAsteriskRTP = b'00000000000000000000'
+lastTelephoeRTP = b'00000000000000000000'
+
+asteriskRTPPort = 10000
+telephoneRTPPort = 5004
 
 def BindTelephone(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=5060):
     telephoneSock.bind((UDP_IP_ADDRESS, UDP_PORT_NO))
     while True:
         data, addr = telephoneSock.recvfrom(10000)
-        # data = data.replace('192.168.0.101:8080', '127.0.0.1:9090')
-        # data = data.replace('192.168.0.101', '127.0.0.1')
-
-        # print(len(data))
-        # if 'INVITE' in data:
+        data = data.replace('192.168.0.101:8080', '127.0.0.1:9090')
+        data = data.replace('192.168.0.101', '127.0.0.1')
+        if 'INVITE sip:' in data:
+            print('ringging...')
             # SerialPortCommunication.sendData("ring")
-        # elif "BYE" in data:
+        elif "BYE sip:" in data:
+            print('finishing...')
             # SerialPortCommunication.sendData("hangup")
-        # else:
+
+        if 'm=audio' in data:
+            indexofM_Audio = data.find('m=audio')
+            index_of_RTP = data.find('RTP', indexofM_Audio)
+            replacementData = data[indexofM_Audio:index_of_RTP]
+            global telephoneRTPPort
+            telephoneRTPPort = int(data[indexofM_Audio+len('m audio'): index_of_RTP])
+            data = data.replace(replacementData, 'm=audio 20000 ')
         asteriskSock.sendto(data, ('127.0.0.1', 6060))
 
 
@@ -39,47 +53,87 @@ def BindAsterisk(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=9090):
     asteriskSock.bind((UDP_IP_ADDRESS, UDP_PORT_NO))
     while True:
         data, addr = asteriskSock.recvfrom(10000)
-        # data = data.replace('127.0.0.1:6060', '192.168.0.102:5060')
-        # data = data.replace('127.0.0.1:9090', '192.168.0.102:5060')
-        # data = data.replace('127.0.0.1', '192.168.0.101')
-        # data = data.replace('rport=9090', 'rport=5060')
-        # data = data.replace('192.168.0.102:6060', '192.168.0.102:5060')
-
-        print ("Receive Data asteriskSock")
-        if len(data) == 74:
-            print('Start Packetizing')
-            packetize.make_header(payload=palloadData)
-            p = packetize.getPacket()
-            telephoneSock.sendto(p, ('192.168.0.101', 8080))
+        data = data.replace('127.0.0.1:6060', '192.168.0.102:5060')
+        data = data.replace('127.0.0.1:9090', '192.168.0.102:5060')
+        data = data.replace('127.0.0.1', '192.168.0.101')
+        data = data.replace('rport=9090', 'rport=5060')
+        data = data.replace('192.168.0.102:6060', '192.168.0.102:5060')
+        if 'm=audio' in data:
+            print('exist')
+            indexofM_Audio = data.find('m=audio')
+            index_of_RTP = data.find('RTP', indexofM_Audio)
+            replacementData = data[indexofM_Audio:index_of_RTP]
+            global asteriskRTPPort
+            asteriskRTPPort = int(data[indexofM_Audio+len('m audio'): index_of_RTP])
+            print('Asterisk RTP Port')
+            print(asteriskRTPPort)
+            data = data.replace(replacementData, 'm=audio 19000 ')
         else:
-            telephoneSock.sendto(data, ('192.168.0.101', 8080))
-        print ("Send: Data telephoneSock")
+            print('does not exist')
+        telephoneSock.sendto(data, ('192.168.0.101', 8080))
+
+
+#
+def BindTelephoneRTP(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=19000):
+    telephoneRTPSock.bind((UDP_IP_ADDRESS, UDP_PORT_NO))
+    while True:
+        data, addr = telephoneRTPSock.recvfrom(500)
+        newdata = data[-20:]
+        SerialPortCommunication.sendData(newdata)
+        asteriskRTPSock.sendto(data, ('127.0.0.1', asteriskRTPPort))
+        mydata = lastAsteriskRTP[:12] + voiceData
+        telephoneRTPSock.sendto(mydata, ('192.168.0.101', telephoneRTPPort))
+
+def BindAsteriskRTP(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=20000):
+    asteriskRTPSock.bind((UDP_IP_ADDRESS, UDP_PORT_NO))
+    while True:
+        data, addr = asteriskRTPSock.recvfrom(500)
+        print('asterisk rtp data received')
+        global lastAsteriskRTP
+        lastAsteriskRTP = data
+        # lastAsteriskRTP = data.replace(data[-20:], voiceData)
+
+        print 'data is changed and ready to send to phone'
+        # telephoneRTPSock.sendto(data, ('192.168.0.101', telephoneRTPPort))
+
 
 
 def dataReceivedFromSerial(data):
-    print (data)
-
-    if "ring" in data:
-        os.system('''sudo asterisk -rvvvx "originate SIP/192.168.0.101 extension" ''')
-    elif "hangup" in data:
-        os.system('''sudo asterisk -rvvvx "hangup request all" ''')
-    else:
-        palloadData = data
+    # if "ring" in data:
+    #     # os.system('''sudo asterisk -rvvvx "originate SIP/192.168.0.101 extension" ''')
+    # elif "hangup" in data:
+    #     os.system('''sudo asterisk -rvvvx "hangup request all" ''')
+    # else:
+    print(len(voiceData))
+    global voiceData
+    voiceData = data
 
 
 
 
 
 if __name__ == '__main__':
+    # initializing socket for rtp and sip
      telephoneSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
      asteriskSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+     telephoneRTPSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+     asteriskRTPSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # createing async input and output
      threadAsterisk = Thread(target = BindAsterisk)
      threadPhone = Thread(target = BindTelephone)
+     threadRTPAsterisk = Thread(target = BindAsteriskRTP)
+     threadRTPPhone = Thread(target = BindTelephoneRTP)
+
      threadAsterisk.start()
      threadPhone.start()
+     threadRTPAsterisk.start()
+     threadRTPPhone.start()
+
      SerialPortCommunication.onReceivedData(dataReceivedFromSerial)
      SerialPortCommunication.init("/dev/ttyUSB0", 115200)
      threadAsterisk.join()
      threadPhone.join()
+     threadRTPAsterisk.join()
+     threadRTPPhone.join()
 #    while True:
 #        SerialPortCommunication.sendData("salam")
