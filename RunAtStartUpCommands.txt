@@ -1,0 +1,7 @@
+sudo nano /lib/systemd/system/myscript.service
+sudo chmod 644 /lib/systemd/system/myscript.service
+sudo systemctl daemon-reload
+ sudo systemctl enable myscript.service
+sudo reboot
+sudo systemctl status myscript.service
+sudo pip install pyserial

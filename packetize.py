@@ -73,24 +73,24 @@ class RtpPacket:
 				break
 			yield item
 
-	def sendpack(self, IPADDR, PORTNUM):
-		file=open("/home/pd/Downloads/total.raw", 'rb')
-		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
-
-		for item in self.read_file(file):
-			print('item', item)
-
-			self.make_header(item)
-			s.sendto(self.getPacket(), (IPADDR, PORTNUM))
-			sleep(0.016)
-			# msgFromServer = s.recvfrom(1024)
-			# print('msgFromServer', msgFromServer)
-
-		# close the socket
-		file.close()
-		s.close()
-
-
-
+# 	def sendpack(self, IPADDR, PORTNUM):
+# 		file=open("/home/pd/Downloads/total.raw", 'rb')
+# 		s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, 0)
+#
+# 		for item in self.read_file(file):
+# 			print('item', item)
+#
+# 			self.make_header(item)
+# 			s.sendto(self.getPacket(), (IPADDR, PORTNUM))
+# 			sleep(0.016)
+# 			# msgFromServer = s.recvfrom(1024)
+# 			# print('msgFromServer', msgFromServer)
+#
+# 		# close the socket
+# 		file.close()
+# 		s.close()
+#
+#
+#
 # obj= RtpPacket()
-# obj.sendpack("192.168.0.101", 5004)
+# obj.sendpack("192.168.0.100", 5004)

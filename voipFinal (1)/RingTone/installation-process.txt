@@ -1,0 +1,63 @@
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt update; sudo apt install atom
+
+sudo apt-get install net-tools
+sudo apt-get install meld
+
+sudo apt-get install build-essential libboost-all-dev libeigen3-dev
+sudo apt-get install git git-cola cmake
+sudo apt-get install libmysqlclient-dev libmysqlcppconn* libmysqlcppconn-dev mongodb sqlite3 libsqlite3-dev
+
+### if it cannot update then a problem might exist:
+sudo gedit /var/cache/app-info/xmls/fwupd.xml
+find "&" in about line 265 and change it to "&amp;"
+sudo appstreamcli refresh-cache --force
+
+################## Asterisk
+http://draalin.com/installing-asterisk-in-ubuntu/
+
+apt-get install build-essential wget libssl-dev libncurses5-dev libnewt-dev libxml2-dev linux-headers-$(uname -r) libsqlite3-dev uuid-dev git subversion libjansson-dev
+######### after downloading asterisk:
+./configure
+sudo make menuselect
+sudo make -j3
+sudo make install
+sudo ldconfig
+sudo ldconfig -p |grep pj
+sudo make samples
+sudo make config
+sudo ldconfig
+/etc/init.d/asterisk start
+sudo asterisk -rvvvv
+######### g729    http://answergig.com/2926/how-to-install-g729-codec-in-asterisk-13
+cat /proc/cpuinfo   //To check your CPU type, run: cat /proc/cpuinfo and look for "sse4_1" in the "flags" line then this script works.
+download http://asterisk.hosting.lv/bin/codec_g729-ast130-gcc4-glibc2.2-x86_64-core2-sse4.so
+sudo  cp  codec_g729-ast130-gcc4-glibc2.2-x86_64-core2-sse4.so  /usr/lib/asterisk/modules/codec_g729.so
+sudo chmod 777 /usr/lib/asterisk/modules/codec_g729.so
+cd /usr/lib/asterisk/modules/
+service asterisk restart
+sudo asterisk -vvvvr
+core show translation   //to check if proper installed 
+
+######### config asterisk
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/sip.conf sip.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/iax.conf iax.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/extensions.conf extensions.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/manager.conf manager.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/modules.conf modules.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/rtp.conf rtp.conf
+sudo cp /home/isrc-voip-1/Desktop/asterisk-panahi/voicemail.conf voicemail.conf
+
+######### config connection ip
+goto "Edit Connections -> Ethernet -> Wired connection 1 -> Edit -> IPv4 Settings"
+Method: Manual
+Address: 192.168.0.102
+Netmask: 255.255.255.0
+
+
+
+
+

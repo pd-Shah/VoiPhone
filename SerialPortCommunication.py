@@ -1,6 +1,7 @@
-import serial
+
 from threading import Thread
 from functools import wraps
+import serial
 
 ser = serial.Serial()
 global event
@@ -9,14 +10,18 @@ global event
 def sendData(data):
     if ser.is_open:
         ser.write(data)
+    else:
+        print ("serial is not open!!!!")
 
 
 def startReceiving():
     while True:
         if ser.is_open:
-            s = ser.read(20)
+            s = ser.read(24)
             global event
             event(s)
+        else:
+            print ("serial is not open!!!!")
 
 
 def onReceivedData(func):
@@ -31,3 +36,5 @@ def init(portName, baudRate):
     if ser.is_open:
         receivingThread = Thread(target=startReceiving)
         receivingThread.start()
+    else:
+        print('serial port is not open')
