@@ -7,6 +7,6 @@ fuser -k 19000/udp
 echo '****** ports are closed'
 sudo systemctl reload asterisk.service
 echo '****** poinmt 2'
-sudo python /home/pd/Desktop/voiphone/cme.py
+sudo python /home/sama/Desktop/voiphone/me.py
 echo '****** ppoint 3'
 

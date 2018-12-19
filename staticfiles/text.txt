@@ -1,0 +1,5 @@
+/usr/share/asterisk/sounds/en_US_f_Allison/macroform-cold_day.gsm
+/usr/share/asterisk/conf/basic-pbx/pjsip.conf
+/etc/asterisk/sip.conf
+ /etc/asterisk/extensions.conf
+/etc/asterisk/pjsip.conf 

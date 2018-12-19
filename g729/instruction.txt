@@ -1,0 +1,9 @@
+
+sudo apt-get update; sudo apt-get upgrade
+sudo apt-get install asterisk
+
+locate codec_g72
+cd /home/sama/Desktop/asterisk-files
+sudo cp ./codec_g729-ast130-gcc4-glibc-x86_64-core2.so /usr/lib/asterisk/modules/codec_g729.so
+
+

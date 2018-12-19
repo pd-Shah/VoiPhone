@@ -136,8 +136,8 @@ def BindTelephoneRTP(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=19000):
         global isAnswered
         if isAnswered:
             SerialPortCommunication.sendData(newdata)
-            with open("send", "ab") as send_file:
-                send_file.write(newdata)
+            # with open("SSEND", "ab") as file_send:
+            #     file_send.write(newdata)
 
 def BindAsteriskRTP(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=20000):
     print('BindAsteriskRTP is running...')
@@ -154,8 +154,12 @@ def BindAsteriskRTP(UDP_IP_ADDRESS='192.168.0.102', UDP_PORT_NO=20000):
         if isAnswered == True:
             mydata = data[:12] + voiceData
 
-        telephoneRTPSock.sendto(mydata, ('192.168.0.100', telephoneRTPPort))
-        telephoneRTPSock.sendto(lastAsteriskRTP, ('192.168.0.100', telephoneRTPPort))
+        if len(data) != 32:
+            mydata += '\xAA'*(32-len(data) )
+        else:
+            telephoneRTPSock.sendto(mydata, ('192.168.0.100', telephoneRTPPort))
+            telephoneRTPSock.sendto(lastAsteriskRTP, ('192.168.0.100', telephoneRTPPort))
+
 
 def dataReceivedFromSerial(data):
      print('dataReceivedFromSerial is running...')

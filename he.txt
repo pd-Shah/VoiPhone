@@ -1,0 +1,274 @@
+sama-System-Product-Name*CLI> reload
+    -- CEL logging disabled.
+  == Parsing '/etc/asterisk/extconfig.conf': Found
+  == Parsing '/etc/asterisk/logger.conf': Found
+ERROR: Unable to open log file '/var/log/asterisk/messages': Permission denied'
+ERROR: Unable to create log channel 'messages'
+[Dec  3 14:54:14] ERROR[3268]: logger.c:867 logger_queue_restart: Unable to create queue log: Permission denied
+ Asterisk Queue Logger restarted
+  == Parsing '/etc/asterisk/manager.conf': Found
+  == Parsing '/etc/asterisk/manager.d/README.conf': Found
+  == Parsing '/etc/asterisk/codecs.conf': Found
+    -- Reloading module 'res_statsd.so' (Statsd client support)
+    -- Reloading module 'res_odbc.so' (ODBC resource)
+  == Parsing '/etc/asterisk/res_odbc.conf': Found
+    -- Reloading module 'res_pjproject.so' (PJPROJECT Log and Utility Support)
+    -- Reloading module 'res_pjsip.so' (Basic SIP resource)
+[Dec  3 14:54:14] NOTICE[3279]: sorcery.c:1406 sorcery_object_load: Type 'system' is not reloadable, maintaining previous values
+    -- Reloading module 'res_pjsip_outbound_publish.so' (PJSIP Outbound Publish Support)
+    -- Reloading module 'res_stun_monitor.so' (STUN Network Monitor)
+    -- Reloading module 'res_phoneprov.so' (HTTP Phone Provisioning)
+  == Parsing '/etc/asterisk/phoneprov.conf': Found
+  == Parsing '/etc/asterisk/phoneprov.conf': Found
+[Dec  3 14:54:14] WARNING[3268]: res_phoneprov.c:1231 get_defaults: Unable to find a valid server address or name.
+  == Parsing '/etc/asterisk/sip.conf': Found
+  == Parsing '/etc/asterisk/users.conf': Found
+  == Parsing '/etc/asterisk/users.conf': Found
+    -- Reloading module 'res_xmpp.so' (Asterisk XMPP Interface)
+    -- Reloading module 'res_smdi.so' (Simplified Message Desk Interface (SMDI) Resource)
+    -- Reloading module 'res_crypto.so' (Cryptographic Digital Signatures)
+    -- Reloading module 'res_hep.so' (HEPv3 API)
+    -- Reloading module 'res_ari.so' (Asterisk RESTful Interface)
+[Dec  3 14:54:14] ERROR[3268]: ari/config.c:312 process_config: No configured users for ARI
+    -- Reloading module 'res_fax.so' (Generic FAX Applications)
+    -- Reloading module 'res_calendar.so' (Asterisk Calendar integration)
+    -- Reloading module 'pbx_lua.so' (Lua PBX Switch)
+    -- Registered extension context 'default'; registrar: pbx_lua
+    -- Including switch 'Lua/' in context 'default'
+    -- Registered extension context 'public'; registrar: pbx_lua
+    -- Including switch 'Lua/' in context 'public'
+    -- Registered extension context 'demo'; registrar: pbx_lua
+    -- Including switch 'Lua/' in context 'demo'
+    -- Registered extension context 'local'; registrar: pbx_lua
+    -- Including switch 'Lua/' in context 'local'
+    -- Added extension '1000' priority -1 to demo
+    -- Added extension '1001' priority -1 to demo
+    -- Added extension '1234' priority -1 to default
+    -- Registered extension context 'macro-myCustomMacro'; registrar: pbx_config
+    -- merging incls/swits/igpats from old(macro-myCustomMacro) to new(macro-myCustomMacro) context, registrar = pbx_lua
+    -- merging incls/swits/igpats from old(default) to new(default) context, registrar = pbx_lua
+    -- Added extension '100' priority 1 to default
+    -- Added extension '100' priority 2 to default
+    -- Added extension '100' priority 3 to default
+    -- Added extension '200' priority 1 to default
+    -- Added extension '200' priority 2 to default
+    -- Added extension '200' priority 3 to default
+    -- Registered extension context 'rtp'; registrar: pbx_config
+    -- merging incls/swits/igpats from old(rtp) to new(rtp) context, registrar = pbx_lua
+    -- Added extension '200' priority 1 to rtp
+    -- Added extension '200' priority 2 to rtp
+    -- Added extension '200' priority 3 to rtp
+    -- Added extension '100' priority 1 to rtp
+    -- Added extension '100' priority 2 to rtp
+    -- Added extension '100' priority 3 to rtp
+    -- Added extension '100' priority 4 to rtp
+    -- Registered extension context 'parkedcalls'; registrar: res_parking/default
+    -- merging incls/swits/igpats from old(parkedcalls) to new(parkedcalls) context, registrar = pbx_lua
+    -- Added extension '720' priority 1 to parkedcalls
+    -- Added extension '719' priority 1 to parkedcalls
+    -- Added extension '718' priority 1 to parkedcalls
+    -- Added extension '717' priority 1 to parkedcalls
+    -- Added extension '716' priority 1 to parkedcalls
+    -- Added extension '715' priority 1 to parkedcalls
+    -- Added extension '714' priority 1 to parkedcalls
+    -- Added extension '713' priority 1 to parkedcalls
+    -- Added extension '712' priority 1 to parkedcalls
+    -- Added extension '711' priority 1 to parkedcalls
+    -- Added extension '710' priority 1 to parkedcalls
+    -- Added extension '709' priority 1 to parkedcalls
+    -- Added extension '708' priority 1 to parkedcalls
+    -- Added extension '707' priority 1 to parkedcalls
+    -- Added extension '706' priority 1 to parkedcalls
+    -- Added extension '705' priority 1 to parkedcalls
+    -- Added extension '704' priority 1 to parkedcalls
+    -- Added extension '703' priority 1 to parkedcalls
+    -- Added extension '702' priority 1 to parkedcalls
+    -- Added extension '701' priority 1 to parkedcalls
+    -- Added extension '700' priority 1 to parkedcalls
+    -- Registered extension context '__func_periodic_hook_context__'; registrar: func_periodic_hook
+    -- merging incls/swits/igpats from old(__func_periodic_hook_context__) to new(__func_periodic_hook_context__) context, registrar = pbx_lua
+    -- Added extension 'beep' priority 2 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'beep' priority 1 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 6 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 5 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 4 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 3 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 2 (CID match '') to __func_periodic_hook_context__
+    -- Added extension 'hook' priority 1 (CID match '') to __func_periodic_hook_context__
+    -- merging incls/swits/igpats from old(local) to new(local) context, registrar = pbx_lua
+    -- merging incls/swits/igpats from old(public) to new(public) context, registrar = pbx_lua
+    -- Registered extension context 'ael-builtin-h-bubble'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-builtin-h-bubble) to new(ael-builtin-h-bubble) context, registrar = pbx_lua
+    -- Added extension 'h' priority 9996 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 9995 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 9994 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 9993 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 9992 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 9991 to ael-builtin-h-bubble
+    -- Added extension 'h' priority 1 to ael-builtin-h-bubble
+    -- Registered extension context 'ael-default'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-default) to new(ael-default) context, registrar = pbx_lua
+    -- Including context 'ael-demo' in context 'ael-default'
+    -- Registered extension context 'ael-demo'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-demo) to new(ael-demo) context, registrar = pbx_lua
+    -- Added extension 'i' priority 1 to ael-demo
+    -- Added extension 't' priority 1 to ael-demo
+    -- Added extension '#' priority 2 to ael-demo
+    -- Added extension '#' priority 1 to ael-demo
+    -- Added extension '8500' priority 2 to ael-demo
+    -- Added extension '8500' priority 1 to ael-demo
+    -- Added extension '_1234' priority 1 to ael-demo
+    -- Added extension '600' priority 4 to ael-demo
+    -- Added extension '600' priority 3 to ael-demo
+    -- Added extension '600' priority 2 to ael-demo
+    -- Added extension '600' priority 1 to ael-demo
+    -- Added extension '500' priority 4 to ael-demo
+    -- Added extension '500' priority 3 to ael-demo
+    -- Added extension '500' priority 2 to ael-demo
+    -- Added extension '500' priority 1 to ael-demo
+    -- Added extension '1000' priority 1 to ael-demo
+    -- Added extension '3' priority 2 to ael-demo
+    -- Added extension '3' priority 1 to ael-demo
+    -- Added extension '2' priority 2 to ael-demo
+    -- Added extension '2' priority 1 to ael-demo
+    -- Added extension 's' priority 12 to ael-demo
+    -- Added extension 's' priority 11 to ael-demo
+    -- Added extension 's' priority 10 to ael-demo
+    -- Added extension 's' priority 9 to ael-demo
+    -- Added extension 's' priority 8 to ael-demo
+    -- Added extension 's' priority 7 to ael-demo
+    -- Added extension 's' priority 6 to ael-demo
+    -- Added extension 's' priority 5 to ael-demo
+    -- Added extension 's' priority 4 to ael-demo
+    -- Added extension 's' priority 3 to ael-demo
+    -- Added extension 's' priority 2 to ael-demo
+    -- Added extension 's' priority 1 to ael-demo
+    -- Registered extension context 'ael-std-exten-ael'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-std-exten-ael) to new(ael-std-exten-ael) context, registrar = pbx_lua
+    -- Including context 'ael-builtin-h-bubble' in context 'ael-std-exten-ael'
+    -- Added extension 'sw_7_BUSY' priority 11 to ael-std-exten-ael
+    -- Added extension 'sw_7_BUSY' priority 10 to ael-std-exten-ael
+    -- Added extension 'sw_7_' priority 10 to ael-std-exten-ael
+    -- Added extension '_sw_7_.' priority 11 to ael-std-exten-ael
+    -- Added extension '_sw_7_.' priority 10 to ael-std-exten-ael
+    -- Added extension 'a' priority 2 to ael-std-exten-ael
+    -- Added extension 'a' priority 1 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 8 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 7 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 6 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 5 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 4 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 3 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 2 to ael-std-exten-ael
+    -- Added extension '~~s~~' priority 1 to ael-std-exten-ael
+    -- Registered extension context 'ael-local'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-local) to new(ael-local) context, registrar = pbx_lua
+    -- Including context 'ael-default' in context 'ael-local'
+    -- Including context 'ael-trunklocal' in context 'ael-local'
+    -- Including context 'ael-iaxtel700' in context 'ael-local'
+    -- Including context 'ael-trunktollfree' in context 'ael-local'
+    -- Including context 'ael-iaxprovider' in context 'ael-local'
+    -- Registered extension context 'ael-longdistance'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-longdistance) to new(ael-longdistance) context, registrar = pbx_lua
+    -- Including context 'ael-local' in context 'ael-longdistance'
+    -- Including context 'ael-trunkld' in context 'ael-longdistance'
+    -- Registered extension context 'ael-international'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-international) to new(ael-international) context, registrar = pbx_lua
+    -- Including context 'ael-longdistance' in context 'ael-international'
+    -- Including context 'ael-trunkint' in context 'ael-international'
+    -- Registered extension context 'ael-trunktollfree'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-trunktollfree) to new(ael-trunktollfree) context, registrar = pbx_lua
+    -- Added extension '_91866NXXXXXX' priority 1 to ael-trunktollfree
+    -- Added extension '_91877NXXXXXX' priority 1 to ael-trunktollfree
+    -- Added extension '_91888NXXXXXX' priority 1 to ael-trunktollfree
+    -- Added extension '_91800NXXXXXX' priority 1 to ael-trunktollfree
+    -- Registered extension context 'ael-trunklocal'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-trunklocal) to new(ael-trunklocal) context, registrar = pbx_lua
+    -- Added extension '_9NXXXXXX' priority 1 to ael-trunklocal
+    -- Registered extension context 'ael-trunkld'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-trunkld) to new(ael-trunkld) context, registrar = pbx_lua
+    -- Including context 'ael-dundi-e164-lookup' in context 'ael-trunkld'
+    -- Added extension '_91NXXNXXXXXX' priority 2 to ael-trunkld
+    -- Added extension '_91NXXNXXXXXX' priority 1 to ael-trunkld
+    -- Registered extension context 'ael-trunkint'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-trunkint) to new(ael-trunkint) context, registrar = pbx_lua
+    -- Including context 'ael-dundi-e164-lookup' in context 'ael-trunkint'
+    -- Added extension '_9011.' priority 2 to ael-trunkint
+    -- Added extension '_9011.' priority 1 to ael-trunkint
+    -- Registered extension context 'ael-iaxprovider'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-iaxprovider) to new(ael-iaxprovider) context, registrar = pbx_lua
+    -- Registered extension context 'ael-iaxtel700'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-iaxtel700) to new(ael-iaxtel700) context, registrar = pbx_lua
+    -- Added extension '_91700XXXXXXX' priority 1 to ael-iaxtel700
+    -- Registered extension context 'ael-dundi-e164'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164) to new(ael-dundi-e164) context, registrar = pbx_lua
+    -- Including context 'ael-builtin-h-bubble' in context 'ael-dundi-e164'
+    -- Added extension '~~s~~' priority 3 to ael-dundi-e164
+    -- Added extension '~~s~~' priority 2 to ael-dundi-e164
+    -- Added extension '~~s~~' priority 1 to ael-dundi-e164
+    -- Registered extension context 'ael-dundi-e164-lookup'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-lookup) to new(ael-dundi-e164-lookup) context, registrar = pbx_lua
+    -- Including context 'ael-dundi-e164-local' in context 'ael-dundi-e164-lookup'
+    -- Including context 'ael-dundi-e164-switch' in context 'ael-dundi-e164-lookup'
+    -- Registered extension context 'ael-dundi-e164-switch'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-switch) to new(ael-dundi-e164-switch) context, registrar = pbx_lua
+    -- Including switch 'DUNDi/e164' in context 'ael-dundi-e164-switch'
+    -- Registered extension context 'ael-dundi-e164-local'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-local) to new(ael-dundi-e164-local) context, registrar = pbx_lua
+    -- Including context 'ael-dundi-e164-canonical' in context 'ael-dundi-e164-local'
+    -- Including context 'ael-dundi-e164-customers' in context 'ael-dundi-e164-local'
+    -- Including context 'ael-dundi-e164-via-pstn' in context 'ael-dundi-e164-local'
+    -- Registered extension context 'ael-dundi-e164-via-pstn'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-via-pstn) to new(ael-dundi-e164-via-pstn) context, registrar = pbx_lua
+    -- Registered extension context 'ael-dundi-e164-customers'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-customers) to new(ael-dundi-e164-customers) context, registrar = pbx_lua
+    -- Registered extension context 'ael-dundi-e164-canonical'; registrar: pbx_ael
+    -- merging incls/swits/igpats from old(ael-dundi-e164-canonical) to new(ael-dundi-e164-canonical) context, registrar = pbx_lua
+    -- Time to scan old dialplan and merge leftovers back into the new: 0.000597 sec
+    -- Time to restore hints and swap in new dialplan: 0.000002 sec
+    -- Time to delete the old dialplan: 0.000027 sec
+    -- Total time merge_contexts_delete: 0.000626 sec
+[Dec  3 14:54:14] NOTICE[3268]: pbx_lua.c:1640 load_or_reload_lua_stuff: Lua PBX Switch loaded.
+    -- Reloading module 'res_parking.so' (Call Parking Resource)
+    -- Reloading module 'res_config_ldap.so' (LDAP realtime interface)
+  == Parsing '/etc/asterisk/res_ldap.conf': Found
+[Dec  3 14:54:14] NOTICE[3268]: res_config_ldap.c:1828 parse_config: No directory user found, anonymous binding as default.
+[Dec  3 14:54:14] ERROR[3268]: res_config_ldap.c:1854 parse_config: No directory URL or host found.
+[Dec  3 14:54:14] NOTICE[3268]: res_config_ldap.c:1772 reload: Cannot reload LDAP RealTime driver.
+    -- Reloading module 'res_config_curl.so' (Realtime Curl configuration)
+  == Parsing '/etc/asterisk/res_curl.conf': Found
+    -- Reloading module 'res_config_sqlite3.so' (SQLite 3 realtime config engine)
+    -- Reloading module 'res_pjsip_authenticator_digest.so' (PJSIP authentication resource)
+    -- Reloading module 'res_pjsip_transport_management.so' (PJSIP Reliable Transport Management)
+    -- Reloading module 'res_pjsip_endpoint_identifier_ip.so' (PJSIP IP endpoint identifier)
+    -- Reloading module 'res_rtp_asterisk.so' (Asterisk RTP Stack)
+    -- Reloading module 'res_musiconhold.so' (Music On Hold Resource)
+    -- Reloading module 'res_pjsip_mwi.so' (PJSIP MWI resource)
+    -- Reloading module 'res_pjsip_publish_asterisk.so' (PJSIP Asterisk Event PUBLISH Support)
+    -- Reloading module 'chan_skinny.so' (Skinny Client Control Protocol (Skinny))
+[Dec  3 14:54:14] NOTICE[3268]: chan_skinny.c:8442 config_load: Configuring skinny from skinny.conf
+  == Parsing '/etc/asterisk/skinny.conf': Found
+    -- Reloading module 'chan_mgcp.so' (Media Gateway Control Protocol (MGCP))
+    -- Reloading module 'chan_console.so' (Console Channel Driver)
+  == Parsing '/etc/asterisk/console.conf': Found
+ Reloading MGCP
+    -- Reloading module 'chan_iax2.so' (Inter Asterisk eXchange (Ver 2))
+    -- Reloading module 'chan_motif.so' (Motif Jingle Channel Driver)
+    -- Reloading module 'chan_sip.so' (Session Initiation Protocol (SIP))
+ Reloading SIP
+    -- Reloading module 'res_pjsip_phoneprov_provider.so' (PJSIP Phoneprov Provider)
+    -- Reloading module 'res_pjsip_outbound_registration.so' (PJSIP Outbound Registration Support)
+    -- Reloading module 'res_adsi.so' (ADSI Resource)
+    -- Reloading module 'res_pjsip_notify.so' (CLI/AMI PJSIP NOTIFY Support)
+    -- Reloading module 'app_agent_pool.so' (Call center agent pool applications)
+    -- Reloading module 'app_confbridge.so' (Conference Bridge Application)
+    -- Reloading module 'cel_manager.so' (Asterisk Manager Interface CEL Backend)
+    -- Reloading module 'cel_custom.so' (Customizable Comma Separated Values CEL Backend)
+  == Parsing '/etc/asterisk/cel_custom.conf': Found
+[Dec  3 14:54:14] NOTICE[3268]: cel_custom.c:97 load_config: No mappings found in cel_custom.conf. Not logging CEL to custom CSVs.
+ Added CEL CSV mapping for 0 files.
+    -- Reloading module 'cdr_odbc.so' (ODBC CDR Backend)
+    -- Reloading module 'cdr_csv.so' (Comma Separated Values CDR Backend)
+    -- Reloading module 'cdr_adaptive_odbc.so' (Adaptive ODBC CDR backend)
+  == Parsing '/etc/asterisk/cdr_adaptive_odbc.conf': Found
+
