@@ -88,7 +88,7 @@ def BindTelephone(UDP_IP_ADDRESS='0.0.0.0', UDP_PORT_NO=5060):
             for j in range(10):
                 for i in range(6):
                     SerialPortCommunication.sendData(HangupBeginData)
-                    sleep(0.01)
+                    #sleep(0.01)
 
         elif "SIP/2.0 200 OK" in data and "Via: SIP/2.0/UDP 192.168.0.102:5060":
             global isAnswered
@@ -167,11 +167,28 @@ def dataReceivedFromSerial(data):
         print ('RingBeginPacket received.')
         global isAnswered
         isAnswered = False
-        os.system('''sudo asterisk -rvvvx "console dial 200" ''')
+
+        current = datetime.now().time().strftime("%H:%M:%S,%f")
+        
+        if (datetime.strptime(current,'%H:%M:%S,%f') - datetime.strptime(lastringreceived,'%H:%M:%S,%f')) >= timedelta(seconds=0.5):
+            global lastringreceived
+            #print(datetime.strptime(current,'%H:%M:%S') - datetime.strptime(lastCallTime,'%H:%M:%S')) 
+            os.system('''sudo asterisk -rvvvx "channel originate sip/200@192.168.0.102:6060 extension 100@rtp" ''')
+            lastringreceived=datetime.now().time().strftime('%H:%M:%S,%f')
+            print(lastringreceived)
+        # os.system('''sudo asterisk -rvvvx "console dial 200" ''')
 
      elif HangupBeginData in data:
          print ('HangupPacket Received')
-         os.system('''sudo asterisk -rvvvx "hangup request all" ''')
+         current = datetime.now().time().strftime("%H:%M:%S,%f")
+        
+         if (datetime.strptime(current,'%H:%M:%S,%f') - datetime.strptime(lasthangupreceived,'%H:%M:%S,%f')) >= timedelta(seconds=0.5):
+            global lasthangupreceived
+            #print(datetime.strptime(current,'%H:%M:%S') - datetime.strptime(lastCallTime,'%H:%M:%S')) 
+            os.system('''sudo asterisk -rvvvx "channel request hangup all" ''')
+            lasthangupreceived=datetime.now().time().strftime('%H:%M:%S,%f')
+            print(lastringreceived)
+         #os.system('''sudo asterisk -rvvvx "channel request hangup all" ''')
          global isAnswered
          isAnswered = False
 
@@ -192,9 +209,11 @@ def dataReceivedFromSerial(data):
 
 if __name__ == '__main__':
 
+
      global lastCallTime
      lastCallTime = datetime.now().time().strftime('%H:%M:%S')
-
+     lastringreceived=  datetime.now().time().strftime('%H:%M:%S,%f')
+     lasthangupreceived=  datetime.now().time().strftime('%H:%M:%S,%f')
      telephoneSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
      asteriskSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
      telephoneRTPSock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
